@@ -217,7 +217,6 @@ var listDiffFilter = function listDiffFilter(context) {
   if (context.leftType !== 'List') {
     return;
   }
-  debugger;
   var matchContext = {
     objectHash: context.options && context.options.objectHash,
     matchByPosition: context.options && context.options.matchByPosition
@@ -362,10 +361,22 @@ var listDiffFilter = function listDiffFilter(context) {
 };
 listDiffFilter.filterName = 'lists';
 
+var compare = {
+  numerically: function(a, b) {
+    return a - b;
+  },
+  numericallyBy: function(name) {
+    return function(a, b) {
+      return get(a, name) - get(b, name);
+    };
+  }
+};
+
 var listPatchFilter = function nestedPatchFilter(context) {
   if (!context.nested) {
     return;
   }
+  debugger;
   if (context.delta._t !== 'a') {
     return;
   }
@@ -447,7 +458,7 @@ var listPatchFilter = function nestedPatchFilter(context) {
   }
 
   if (!context.children) {
-    context.setResult(context.left).exit();
+    context.setResult(array).exit();
     return;
   }
   context.exit();

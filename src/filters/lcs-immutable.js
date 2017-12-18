@@ -5,7 +5,7 @@ LCS implementation that supports arrays or strings
 reference: http://en.wikipedia.org/wiki/Longest_common_subsequence_problem
 
 */
-
+// jshint ignore: start
 const getItem = (arr, idx) => arr.get ? arr.get(idx) : arr[idx];
 const length = arr => arr.size != null ? arr.size : arr.length;
 
